@@ -20,23 +20,43 @@
 
 
 
-const EventEmitter = require("events");
+// const EventEmitter = require("events");
 
 
-class Counter extends EventEmitter {
+// class Counter extends EventEmitter {
     
-    inc() {
+//     inc() {
         
-        this.emit("increment"); 
-    }
-}
+//         this.emit("increment"); 
+//     }
+// }
 
-const c = new Counter();
+// const c = new Counter();
 
 
-c.on("increment", () => {
-    console.log("Incremented");
+// c.on("increment", () => {
+//     console.log("Incremented");
+// });
+
+
+// c.inc();
+
+
+const readline = require("readline");
+
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
 });
 
 
-c.inc();
+rl.question("Sizin adınız nədir? ", (name) => {
+    
+   
+    console.log(`Salam, ${name}! Səninlə tanış olmağıma şadam.`)
+
+    
+    rl.close();
+});
+
