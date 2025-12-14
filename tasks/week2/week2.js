@@ -1,23 +1,20 @@
+const EventEmitter = require("events");
 
 
-console.log(" Timerlar Misalı Başladı ");
+class Counter extends EventEmitter {
+    
+    inc() {
+        
+        this.emit("increment"); 
+    }
+}
+
+const c = new Counter();
 
 
-setTimeout(() => {
-    console.log("Runs once after 1s");
-}, 1000);
+c.on("increment", () => {
+    console.log("Incremented");
+});
 
 
-const id = setInterval(() => {
-    console.log("Tick");
-}, 500);
-
-
-setTimeout(() => {
-    clearInterval(id);
-    console.log("Interval dayandırıldı (3 saniyə keçdi)");
-    console.log("Timerlar Misalı Bitdi ");
-}, 3000);
-
-
-console.log("Asinxron əməliyyatlar planlaşdırıldı.");
+c.inc();
