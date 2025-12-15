@@ -6,4 +6,4 @@
 
 const budget =100 
 console.log(budget);
-const budget
+const budget //error verir cunki const daxilinde iki eyni adli box yaratmaq olmur
