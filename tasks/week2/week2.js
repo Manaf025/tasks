@@ -41,22 +41,55 @@
 
 // c.inc();
 
-
-const readline = require("readline");
-
-
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+// const readline = require("readline");
 
 
-rl.question("Sizin adınız nədir? ", (name) => {
+// const rl = readline.createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// });
+
+
+// rl.question("Sizin adınız nədir? ", (name) => {
     
    
-    console.log(`Salam, ${name}! Səninlə tanış olmağıma şadam.`)
+//     console.log(`Salam, ${name}! Səninlə tanış olmağıma şadam.`)
 
     
-    rl.close();
-});
+//     rl.close();
+// });
 
+// 1. Sadə, asinxron funksiya (Söz qaytarır)
+// Uğursuzluq ehtimalını (Math.random) kənara qoyuruq ki, kod daha statik olsun.
+// Bu nümunədə FƏRZ EDƏK ki, həmişə UĞURSUZLUQ baş verir.
+function getFailPromise() {
+    return new Promise((_, reject) => {
+        setTimeout(() => {
+            reject(new Error("Məlumat əldə edilmədi!"));
+        }, 1000); 
+    });
+}
+
+// 2. Əsas funksiya: try/catch ilə xətanı tutur
+async function startProcess() {
+    console.log("Əməliyyat başladı...");
+    
+    try {
+        // Uğursuz olacağı gözlənilən funksiyanı çağırırıq
+        const result = await getFailPromise(); 
+        
+        // Uğurlu olarsa, buraya düşəcək
+        console.log("Uğur:", result);
+        
+    } catch (error) {
+        // Uğursuz olarsa, xəta buraya düşəcək
+        console.error("🛑 Xəta tutuldu!");
+        console.error("Məlumat:", error.message);
+        
+    } finally {
+        console.log("--- Əməliyyat başa çatdı. ---");
+    }
+}
+
+// İcra
+startProcess();
